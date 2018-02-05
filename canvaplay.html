@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+<canvas id="myCanvas" width="400" height="400" style="border:1px solid #234322;" >
+</canvas>
+
+
+
+<button type="button" class="clear">Clear</button>
+
+
+<button type="button" class="toggle">Toggle</button>
+
+
+
+
+<script>
+var c = document.getElementById("myCanvas"); 
+var ctx = c. getContext("2d");
+
+var x;
+var y;
+var sqr = true;
+
+
+
+function clearCanvas(){
+	ctx.clearRect(0, 0, c.width, c.height);
+	//console.log("cleared");
+}
+
+function drawCircle(){
+	var x = event.clientX;    
+	var y = event.clientY;
+  	ctx.fillStyle = "purple"; 
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+function drawSquare(){
+	var x = event.clientX;    
+	var y = event.clientY;
+	ctx.fillStyle = "yellow"; 
+	ctx.beginPath();
+	ctx.rect(x-20,y-20,40,40);
+	ctx.stroke();
+	ctx.fill();
+}
+
+function drawShapes(){
+	if (sqr == true){
+		drawSquare();
+	}
+	else{
+		drawCircle();	
+	}
+}
+
+function toggle(){
+	sqr = false;
+}
+
+c.addEventListener('click',drawShapes);
+
+
+
+
+var butclear = document.getElementsByTagName('button')[0];
+var buttoggle = document.getElementsByTagName('button')[1];
+
+butclear.addEventListener('click', clearCanvas);
+
+buttoggle.addEventListener('click', toggle);
+
+</script>
+
+
+</body>
+</html>
